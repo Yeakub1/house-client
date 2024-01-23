@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import NotFoundPage from "../../Pages/NotFoundPage";
-import MainLayout from "../../layout/MainLayout";
-import Register from "../../Pages/Register";
-import LogIn from "../../Pages/LogIn";
-import Dashboard from "../../Pages/Dashboard";
-import Home from "../../Pages/Home";
+import MainLayout from "../layout/MainLayout";
+import Register from "../Pages/Register";
+import LogIn from "../Pages/LogIn";
+import Dashboard from "../Pages/Dashboard";
+import Home from "../Pages/Home";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
@@ -28,9 +29,5 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
     ],
-  },
-  {
-    path: "*",
-    element: <NotFoundPage />,
   },
 ]);
