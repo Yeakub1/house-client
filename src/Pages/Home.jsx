@@ -13,13 +13,10 @@ const Home = () => {
   const [allHouses, setAllHouses] = useState([]);
   const [houseId, setHouseId] = useState(null);
   const [page, setPage] = useState(1);
-  // const [loading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(null);
   const [filteredSearchData, setFilteredSearchData] = useState(null);
   const [filteredOptionsData, setFilteredOptionsData] = useState(null);
   const [filterModalData, setFilterModalData] = useState({});
-
-  // console.log(filterModalData);
 
   const { data: bookingList, refetch } = useQuery({
     queryKey: ["houseList"],
@@ -35,10 +32,8 @@ const Home = () => {
       document.documentElement.scrollHeight
     ) {
       setPage((prev) => prev + 1);
-      // setIsLoading(true);
     }
   };
-  // console.log(page);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -68,12 +63,9 @@ const Home = () => {
         const mergedHouses = [...prev, ...response.data.data];
         return removeDuplicates(mergedHouses);
       });
-      // setIsLoading(false);
     }
     GetAllHouses();
   }, [page]);
-  // console.log(allHouses, "All house");
-
   // filter options
 
   useEffect(() => {
