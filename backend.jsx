@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const API = "http://localhost:5000/";
+export const API = "https://house-hunter-server-wine.vercel.app/";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://house-hunter-server-wine.vercel.app/",
 });
 
 api.interceptors.request.use(

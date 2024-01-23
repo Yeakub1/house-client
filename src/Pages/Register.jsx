@@ -29,7 +29,7 @@ const Register = () => {
       await dispatch(registerNewUser(formData));
       setIsLoading(false);
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate("/login");
       }, 400);
     } catch (error) {
       setIsLoading(false);

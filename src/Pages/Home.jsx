@@ -7,7 +7,6 @@ import BookingModal from "../components/dashboard/houseOwner/BookingModal";
 
 import searchIcon from "../assets/searchIcon.svg";
 import { toast } from "react-hot-toast";
-import FilterOptionsModal from "../components/dashboard/FilterOptionsModal";
 
 const Home = () => {
   const [allHouses, setAllHouses] = useState([]);
@@ -15,8 +14,6 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(null);
   const [filteredSearchData, setFilteredSearchData] = useState(null);
-  const [filteredOptionsData, setFilteredOptionsData] = useState(null);
-  const [filterModalData, setFilterModalData] = useState({});
 
   const { data: bookingList, refetch } = useQuery({
     queryKey: ["houseList"],
@@ -75,18 +72,6 @@ const Home = () => {
     setFilteredSearchData(filteredSearchData);
   }, [searchQuery, allHouses]);
 
-  useEffect(() => {
-    if (filterModalData) {
-      const filteredData = allHouses?.filter((item) => {
-        return Object.entries(filterModalData)?.every(([key, value]) => {
-          return value === "" || item[key]?.includes(value);
-        });
-      });
-      setFilteredOptionsData(filteredData);
-    }
-  }, [allHouses, filterModalData]);
-  console.log(filteredOptionsData, "options");
-
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       setSearchQuery(e.target.value);
@@ -118,17 +103,6 @@ const Home = () => {
             className="w-7 absolute top-[25%] left-3"
           />
         </div>
-        <div className="flex flex-row gap-4">
-          <button
-            onClick={() => {
-              window.my_modal_2.showModal();
-            }}
-            className=" px-5 py-4 border border-neutral-200 
-           shadow-md rounded-xl"
-          >
-            Filter option
-          </button>
-        </div>
       </section>
       {/* Houses */}
       <section className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-5 sm:gap-6 md:gap-8 lg:gap-10">
@@ -153,23 +127,23 @@ const Home = () => {
                       />
                     </div>
                     <div className=" flex flex-col gap-y-1 text-sm py-3 px-2 md:pt-3 md:pb-5 md:px-4">
+                      <p className="font-bold text-xl">
+                        <span>Name:</span> {house?.name}
+                      </p>
                       <p>
-                        <span className="font-medium">Bedrooms:</span>{" "}
+                        <span className="font-medium">Bedrooms:</span>
                         {house?.bedrooms}, Room size: {house?.roomSize} sft
                       </p>
                       <p>
-                        {" "}
-                        <span className="font-medium">
-                          Available from:
-                        </span>{" "}
+                        <span className="font-medium">Available from:</span>
                         {house?.availablityDate}
                       </p>
                       <p>
-                        <span className=" font-medium"> Phone number:</span>{" "}
+                        <span className=" font-medium"> Phone number:</span>
                         {house?.phoneNumber}
                       </p>
                       <p>
-                        <span className=" font-medium"> Rent per month:</span>{" "}
+                        <span className=" font-medium"> Rent per month:</span>
                         {house?.rentPerMonth}tk
                       </p>
                     </div>
@@ -179,66 +153,7 @@ const Home = () => {
                         window.my_modal_1.showModal();
                       }}
                       disabled={isIdMatch}
-                      className=" py-3 px-6 md:px-9 absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl bg-primary hover:bg-accent duration-300 transition text-white font-medium disabled:bg-[#dddddd] disabled:cursor-not-allowed"
-                    >
-                      {isIdMatch ? (
-                        <p className=" text-[#717171] text-sm">Aready booked</p>
-                      ) : (
-                        "Book"
-                      )}
-                    </button>
-                  </div>
-                );
-              })}
-          </>
-        ) : filteredOptionsData?.length !== 0 ? (
-          <>
-            {filteredOptionsData &&
-              filteredOptionsData?.map((house, i) => {
-                const isIdMatch = bookingList?.some(
-                  (list) => list.houseId === house._id
-                );
-                console.log(isIdMatch);
-                return (
-                  <div
-                    key={i}
-                    className=" flex flex-col gap-y-3 shadow-md bg-white border border-neutral-200 rounded-2xl relative pb-14"
-                  >
-                    <div>
-                      <img
-                        src={house?.houseImage}
-                        alt="House"
-                        className="rounded-t-2xl"
-                      />
-                    </div>
-                    <div className=" flex flex-col gap-y-1 text-sm py-3 px-2 md:pt-3 md:pb-5 md:px-4">
-                      <p>
-                        <span className="font-medium">Bedrooms:</span>{" "}
-                        {house?.bedrooms}, Room size: {house?.roomSize} sft
-                      </p>
-                      <p>
-                        {" "}
-                        <span className="font-medium">
-                          Available from:
-                        </span>{" "}
-                        {house?.availablityDate}
-                      </p>
-                      <p>
-                        <span className=" font-medium"> Phone number:</span>{" "}
-                        {house?.phoneNumber}
-                      </p>
-                      <p>
-                        <span className=" font-medium"> Rent per month:</span>{" "}
-                        {house?.rentPerMonth}tk
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setHouseId(house?._id);
-                        window.my_modal_1.showModal();
-                      }}
-                      disabled={isIdMatch}
-                      className=" py-3 px-6 md:px-9 absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl bg-primary hover:bg-accent duration-300 transition text-white font-medium disabled:bg-[#dddddd] disabled:cursor-not-allowed"
+                      className=" absolute bottom-0 w-full py-2 rounded-br-2xl rounded-tl-2xl bg-primary hover:bg-accent duration-300 transition text-white font-medium disabled:bg-[#dddddd] disabled:cursor-not-allowed"
                     >
                       {isIdMatch ? (
                         <p className=" text-[#717171] text-sm">Aready booked</p>
@@ -267,27 +182,28 @@ const Home = () => {
                       <img
                         src={house?.houseImage}
                         alt="House"
-                        className="rounded-t-2xl"
+                        className="rounded-t-2xl h-60 w-full"
+                        draggable="false"
                       />
                     </div>
                     <div className=" flex flex-col gap-y-1 text-sm py-3 px-2 md:pt-3 md:pb-5 md:px-4">
+                      <p className="font-bold text-xl">
+                        <span>Name:</span> {house?.name}
+                      </p>
                       <p>
                         <span className="font-medium">Bedrooms:</span>{" "}
                         {house?.bedrooms}, Room size: {house?.roomSize} sft
                       </p>
                       <p>
-                        {" "}
-                        <span className="font-medium">
-                          Available from:
-                        </span>{" "}
+                        <span className="font-medium">Available from:</span>
                         {house?.availablityDate}
                       </p>
                       <p>
-                        <span className=" font-medium"> Phone number:</span>{" "}
+                        <span className=" font-medium"> Phone number:</span>
                         {house?.phoneNumber}
                       </p>
                       <p>
-                        <span className=" font-medium"> Rent per month:</span>{" "}
+                        <span className=" font-medium"> Rent per month:</span>
                         {house?.rentPerMonth}tk
                       </p>
                     </div>
@@ -297,7 +213,7 @@ const Home = () => {
                         window.my_modal_1.showModal();
                       }}
                       disabled={isIdMatch}
-                      className=" py-3 px-6 md:px-9 absolute bottom-0 right-0 rounded-br-2xl rounded-tl-2xl bg-primary hover:bg-accent duration-300 transition text-white font-medium disabled:bg-[#dddddd] disabled:cursor-not-allowed"
+                      className=" absolute bottom-0 w-full py-2 rounded-br-2xl rounded-tl-2xl bg-primary hover:bg-accent duration-300 transition text-white font-medium disabled:bg-[#dddddd] disabled:cursor-not-allowed"
                     >
                       {isIdMatch ? (
                         <p className=" text-[#717171] text-sm">Aready booked</p>
@@ -311,9 +227,6 @@ const Home = () => {
           </>
         )}
       </section>
-      <>
-        <FilterOptionsModal setFilterModalData={setFilterModalData} />
-      </>
       <>
         <BookingModal
           houseId={houseId}

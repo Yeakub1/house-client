@@ -2,7 +2,6 @@
 import dashboard from "../../assets/dashboardIcons/dashboard.png";
 import booking from "../../assets/dashboardIcons/booking.png";
 import { useSelector } from "react-redux";
-// import list from "../../assets/dashboardIcons/list.png";
 
 const LeftDashboardPanel = ({ selectedMenu, setSelectedMenu }) => {
   const userRole = useSelector((state) => state.user?.userDetails?.role);
@@ -31,25 +30,10 @@ const LeftDashboardPanel = ({ selectedMenu, setSelectedMenu }) => {
               }`}
             >
               <img src={dashboard} alt="dashboard" className=" w-6 2xl:w-7" />
-              <p className=" text-base md:text-lg">House list</p>
-            </div>
-            <div
-              onClick={() => {
-                setSelectedMenu(true);
-              }}
-              className={`flex flex-row items-center gap-3 px-4 py-2 cursor-pointer ${
-                selectedMenu ? "bg-secondary" : ""
-              }`}
-            >
-              <img src={booking} alt="dashboard" className=" w-5 2xl:w-7" />
-              <p className=" text-base md:text-lg">Booking</p>
+              <p className=" text-base md:text-lg">Add House</p>
             </div>
           </>
         )}
-        {/* <div className=" flex flex-row items-center gap-3 mx-4">
-          <img src={list} alt="dashboard" className=" w-6 md:w-8" />
-          <p className=" text-base md:text-lg"> </p>
-        </div> */}
       </div>
     </section>
   );
