@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../../../src/assets/logo.png";
+import logo from "../../assets/house-hunter-logo.png";
 import { getUser, userLogOut } from "../../redux/actions/userActions";
 
 const Navbar = () => {

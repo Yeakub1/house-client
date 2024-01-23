@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import NotFoundPage from "../Pages/NotFoundPage";
-import MainLayout from "../layout/MainLayout";
-import Register from "../Pages/Register";
-import LogIn from "../Pages/LogIn";
-import Dashboard from "../Pages/Dashboard";
-import Home from "../Pages/Home";
+import NotFoundPage from "../../Pages/NotFoundPage";
+import MainLayout from "../../layout/MainLayout";
+import Register from "../../Pages/Register";
+import LogIn from "../../Pages/LogIn";
+import Dashboard from "../../Pages/Dashboard";
+import Home from "../../Pages/Home";
 
 export const router = createBrowserRouter([
   {

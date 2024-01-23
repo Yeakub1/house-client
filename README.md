@@ -1,8 +1,15 @@
-# React + Vite
+# <h1 id="house-hunter"> House hunter <span>![Live link](https://house-hunter-two.vercel.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+</span> </h1>
 
-Currently, two official plugins are available:
+## <h2 id="stack" >Tech Stack </h2>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Server:** NodeJS, ExpressJS, MongoDB, React, Tanstack query, jwt, dasyui...
+
+### <h3 id="functionality">Functionality </h3>
+
+1. Custom authentication
+2. Role based auth
+3. Unique dashboard for each role (House owner, house renter)
+4. Filter option
+5. Infinite scrolling
