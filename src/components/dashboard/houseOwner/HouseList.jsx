@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../../../../backend";
-import dashboard from "../../../assets/dashboardPic.png";
+import dashboard from "../../../assets/dashboardPic.jpg";
 import HouseListTable from "./HouseListTable";
 import NewHouseModal from "./NewHouseModal";
 
@@ -43,7 +43,7 @@ const HouseList = () => {
             <img
               src={dashboard}
               alt="See house listing"
-              className=" md:max-w-md"
+              className=" md:max-w-md mt-10"
             />
           </div>
         ) : (
