@@ -172,7 +172,6 @@ const Home = () => {
                 const isIdMatch = bookingList?.some(
                   (list) => list.houseId === house._id
                 );
-                // console.log(isIdMatch);
                 return (
                   <div
                     key={i}
@@ -195,15 +194,15 @@ const Home = () => {
                         {house?.bedrooms}, Room size: {house?.roomSize} sft
                       </p>
                       <p>
-                        <span className="font-medium">Available from:</span>
+                        <span className="font-medium">Available from:</span>{" "}
                         {house?.availablityDate}
                       </p>
                       <p>
-                        <span className=" font-medium"> Phone number:</span>
+                        <span className=" font-medium"> Phone number:</span>{" "}
                         {house?.phoneNumber}
                       </p>
                       <p>
-                        <span className=" font-medium"> Rent per month:</span>
+                        <span className=" font-medium"> Rent per month:</span>{" "}
                         {house?.rentPerMonth}tk
                       </p>
                     </div>
